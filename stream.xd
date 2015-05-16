@@ -1,0 +1,1 @@
+stream create --name geohash_enricher --definition "reactor-ip --port=3003  | geohasher --geoHashSize=7 --lngPos=9 --latPos=8 | log" --deploy
