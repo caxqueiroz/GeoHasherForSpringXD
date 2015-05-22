@@ -12,6 +12,16 @@ public class GeoHasherOptionsMetadata {
     private int latPos = 0;
     private int lngPos = 1;
 
+    private String splitTag;
+
+    public String getSplitTag() {
+        return splitTag;
+    }
+
+    @ModuleOption(value = "the tag used to splite the string", defaultValue = ",")
+    public void setSplitTag(String splitTag) {
+        this.splitTag = splitTag;
+    }
 
     @ModuleOption(value = "the Latitude position in the string (TSV style)", defaultValue = "0")
     public void setLatPos(int pos){

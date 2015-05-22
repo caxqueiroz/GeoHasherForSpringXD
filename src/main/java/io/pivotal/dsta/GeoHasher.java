@@ -19,6 +19,8 @@ public class GeoHasher {
     @Value("${lngPos}")
     private int lngPos;
 
+    @Value("${splitTag}")
+    private String splitTag;
 
     public GeoHasher(GeoHasherOptionsMetadata optionsMetadata){
         geoHashSize = optionsMetadata.getGeoHashSize();
@@ -36,7 +38,7 @@ public class GeoHasher {
     public String process(String event) {
 
         Assert.notNull(event);
-        String[] csvFields = event.split(",");
+        String[] csvFields = event.split(splitTag);
         double lat = Double.valueOf(csvFields[latPos]);
         double lng = Double.valueOf(csvFields[lngPos]);
 
@@ -46,7 +48,7 @@ public class GeoHasher {
         System.arraycopy(csvFields,0,newCSVFields,0,csvFields.length);
         newCSVFields[newCSVFields.length - 1] = geoHash;
 
-        String csv = String.join(",", newCSVFields);
+        String csv = String.join(splitTag, newCSVFields);
 
         return csv;
     }
